@@ -41,3 +41,10 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+*.exe
+obj/Debug/DesignTimeResolveAssemblyReferences.cache
+obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+obj/Debug/ReadExif.csproj.FileListAbsolute.txt
+obj/Debug/ReadExif.csproj.GenerateResource.Cache
+obj/Debug/ReadExif.csprojResolveAssemblyReference.cache

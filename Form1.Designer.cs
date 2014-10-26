@@ -1,4 +1,5 @@
-﻿namespace ReadExif
+﻿using System.Windows.Forms;
+namespace ReadExif
 {
     partial class MainForm
     {
@@ -102,7 +103,7 @@
             this.sourcesPanel.Location = new System.Drawing.Point(12, 89);
             this.sourcesPanel.Name = "sourcesPanel";
             this.sourcesPanel.RowCount = 1;
-            this.sourcesPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.sourcesPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.sourcesPanel.Size = new System.Drawing.Size(0, 0);
             this.sourcesPanel.TabIndex = 10;
             // 
@@ -112,7 +113,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(573, 99);
+            this.ClientSize = new System.Drawing.Size(573, 97);
+            this.StartPosition = FormStartPosition.CenterScreen;
             this.Controls.Add(this.sourcesPanel);
             this.Controls.Add(this.goButton);
             this.Controls.Add(this.addSourceButton);
@@ -120,6 +122,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.button2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximumSize = new System.Drawing.Size(589, 500);
             this.Name = "MainForm";
             this.Text = "Photofile Merger";

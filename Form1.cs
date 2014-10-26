@@ -8,15 +8,13 @@ namespace ReadExif
     public partial class MainForm : Form
     {
         private List<SourceControl> sources;
+
         public MainForm()
         {
             InitializeComponent();
             sources = new List<SourceControl>();
 
-            SourceControl control = new SourceControl();
-            sources.Add(control);
-            control.SetOriginal();
-            sourcesPanel.Controls.Add(control);
+            addControl(SourceControl.ORIGIN);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -29,7 +27,17 @@ namespace ReadExif
 
         private void addSourceButton_Click(object sender, EventArgs e)
         {
-            SourceControl control = new SourceControl();
+            addControl(false);
+        }
+        private void addControl(bool isOrigin) { 
+            SourceControl control;
+            if(isOrigin){
+                control = new SourceControl(SourceControl.ORIGIN);
+            }
+            else
+            {
+                control = new SourceControl();
+            }
             sources.Add(control);
             sourcesPanel.Controls.Add(control);
         }

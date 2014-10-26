@@ -1,0 +1,9 @@
+H:\workspace\PhotofileMerger\bin\Debug\ReadExif.exe.config
+H:\workspace\PhotofileMerger\obj\Debug\ReadExif.exe
+H:\workspace\PhotofileMerger\obj\Debug\ReadExif.pdb
+H:\workspace\PhotofileMerger\bin\Debug\ReadExif.exe
+H:\workspace\PhotofileMerger\bin\Debug\ReadExif.pdb
+H:\workspace\PhotofileMerger\obj\Debug\ReadExif.MainForm.resources
+H:\workspace\PhotofileMerger\obj\Debug\ReadExif.Properties.Resources.resources
+H:\workspace\PhotofileMerger\obj\Debug\ReadExif.SourceControl.resources
+H:\workspace\PhotofileMerger\obj\Debug\PhotofileMerger.csproj.GenerateResource.Cache

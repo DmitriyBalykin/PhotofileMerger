@@ -46,9 +46,10 @@
             // 
             // photoDateTextBox
             // 
+            this.photoDateTextBox.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.photoDateTextBox.Location = new System.Drawing.Point(119, 79);
             this.photoDateTextBox.Name = "photoDateTextBox";
-            this.photoDateTextBox.Size = new System.Drawing.Size(155, 20);
+            this.photoDateTextBox.Size = new System.Drawing.Size(139, 20);
             this.photoDateTextBox.TabIndex = 15;
             // 
             // captureDateLabel
@@ -64,7 +65,7 @@
             // 
             this.timeShiftTextBox.Location = new System.Drawing.Point(61, 5);
             this.timeShiftTextBox.Name = "timeShiftTextBox";
-            this.timeShiftTextBox.Size = new System.Drawing.Size(177, 20);
+            this.timeShiftTextBox.Size = new System.Drawing.Size(164, 20);
             this.timeShiftTextBox.TabIndex = 13;
             // 
             // timeShiftLabel
@@ -80,7 +81,7 @@
             // 
             this.rootFolderTextBox.Location = new System.Drawing.Point(119, 21);
             this.rootFolderTextBox.Name = "rootFolderTextBox";
-            this.rootFolderTextBox.Size = new System.Drawing.Size(403, 20);
+            this.rootFolderTextBox.Size = new System.Drawing.Size(370, 20);
             this.rootFolderTextBox.TabIndex = 11;
             // 
             // rootFolderButton
@@ -107,7 +108,7 @@
             // 
             this.anchorFileTextBox.Location = new System.Drawing.Point(119, 49);
             this.anchorFileTextBox.Name = "anchorFileTextBox";
-            this.anchorFileTextBox.Size = new System.Drawing.Size(403, 20);
+            this.anchorFileTextBox.Size = new System.Drawing.Size(370, 20);
             this.anchorFileTextBox.TabIndex = 9;
             this.anchorFileTextBox.TextChanged += new System.EventHandler(this.anchorFileTextBox_TextChanged);
             // 
@@ -122,7 +123,7 @@
             this.sourceGroupBox.Controls.Add(this.rootFolderTextBox);
             this.sourceGroupBox.Location = new System.Drawing.Point(3, 3);
             this.sourceGroupBox.Name = "sourceGroupBox";
-            this.sourceGroupBox.Size = new System.Drawing.Size(527, 108);
+            this.sourceGroupBox.Size = new System.Drawing.Size(500, 108);
             this.sourceGroupBox.TabIndex = 16;
             this.sourceGroupBox.TabStop = false;
             this.sourceGroupBox.Text = "Source #";
@@ -131,9 +132,9 @@
             // 
             this.timeShiftPanel.Controls.Add(this.timeShiftLabel);
             this.timeShiftPanel.Controls.Add(this.timeShiftTextBox);
-            this.timeShiftPanel.Location = new System.Drawing.Point(280, 75);
+            this.timeShiftPanel.Location = new System.Drawing.Point(264, 75);
             this.timeShiftPanel.Name = "timeShiftPanel";
-            this.timeShiftPanel.Size = new System.Drawing.Size(241, 27);
+            this.timeShiftPanel.Size = new System.Drawing.Size(231, 27);
             this.timeShiftPanel.TabIndex = 16;
             // 
             // anchorFileDialog
@@ -146,7 +147,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.sourceGroupBox);
             this.Name = "SourceControl";
-            this.Size = new System.Drawing.Size(535, 114);
+            this.Size = new System.Drawing.Size(506, 114);
             this.sourceGroupBox.ResumeLayout(false);
             this.sourceGroupBox.PerformLayout();
             this.timeShiftPanel.ResumeLayout(false);

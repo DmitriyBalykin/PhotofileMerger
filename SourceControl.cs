@@ -16,6 +16,10 @@ namespace ReadExif
 
         public static event ChangedEventHandler Changed;
 
+        public delegate void RemovedEventHandler(object sender, EventArgs e);
+
+        public static event RemovedEventHandler Removed;
+
         public static bool ORIGIN = true;
 
         public TimeSpan SourceTimeDiff;
@@ -122,6 +126,11 @@ namespace ReadExif
         private void anchorFileTextBox_TextChanged(object sender, EventArgs e)
         {
             photoDateTextBox.Text = FileProcessor.GetFileExifDate(anchorFileTextBox.Text);
+        }
+
+        private void removeSourceButton_Click(object sender, EventArgs e)
+        {
+            Removed(sender, e);
         }
     }
 }

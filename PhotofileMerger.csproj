@@ -61,12 +61,6 @@
     <Compile Include="SourceControl.Designer.cs">
       <DependentUpon>SourceControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Sources.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Sources.Designer.cs">
-      <DependentUpon>Sources.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

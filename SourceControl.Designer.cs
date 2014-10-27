@@ -40,22 +40,23 @@
             this.timeShiftPanel = new System.Windows.Forms.Panel();
             this.rootFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.anchorFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.removeSourceButton = new System.Windows.Forms.Button();
             this.sourceGroupBox.SuspendLayout();
             this.timeShiftPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // photoDateTextBox
             // 
-            this.photoDateTextBox.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.photoDateTextBox.Location = new System.Drawing.Point(119, 79);
+            this.photoDateTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.photoDateTextBox.Location = new System.Drawing.Point(206, 79);
             this.photoDateTextBox.Name = "photoDateTextBox";
-            this.photoDateTextBox.Size = new System.Drawing.Size(139, 20);
+            this.photoDateTextBox.Size = new System.Drawing.Size(122, 20);
             this.photoDateTextBox.TabIndex = 15;
             // 
             // captureDateLabel
             // 
             this.captureDateLabel.AutoSize = true;
-            this.captureDateLabel.Location = new System.Drawing.Point(6, 83);
+            this.captureDateLabel.Location = new System.Drawing.Point(102, 83);
             this.captureDateLabel.Name = "captureDateLabel";
             this.captureDateLabel.Size = new System.Drawing.Size(98, 13);
             this.captureDateLabel.TabIndex = 14;
@@ -65,7 +66,7 @@
             // 
             this.timeShiftTextBox.Location = new System.Drawing.Point(61, 5);
             this.timeShiftTextBox.Name = "timeShiftTextBox";
-            this.timeShiftTextBox.Size = new System.Drawing.Size(164, 20);
+            this.timeShiftTextBox.Size = new System.Drawing.Size(94, 20);
             this.timeShiftTextBox.TabIndex = 13;
             // 
             // timeShiftLabel
@@ -79,16 +80,16 @@
             // 
             // rootFolderTextBox
             // 
-            this.rootFolderTextBox.Location = new System.Drawing.Point(119, 21);
+            this.rootFolderTextBox.Location = new System.Drawing.Point(102, 21);
             this.rootFolderTextBox.Name = "rootFolderTextBox";
-            this.rootFolderTextBox.Size = new System.Drawing.Size(370, 20);
+            this.rootFolderTextBox.Size = new System.Drawing.Size(387, 20);
             this.rootFolderTextBox.TabIndex = 11;
             // 
             // rootFolderButton
             // 
             this.rootFolderButton.Location = new System.Drawing.Point(6, 19);
             this.rootFolderButton.Name = "rootFolderButton";
-            this.rootFolderButton.Size = new System.Drawing.Size(100, 23);
+            this.rootFolderButton.Size = new System.Drawing.Size(90, 23);
             this.rootFolderButton.TabIndex = 10;
             this.rootFolderButton.Text = "Root folder";
             this.rootFolderButton.UseVisualStyleBackColor = true;
@@ -98,7 +99,7 @@
             // 
             this.anchorFileButton.Location = new System.Drawing.Point(6, 47);
             this.anchorFileButton.Name = "anchorFileButton";
-            this.anchorFileButton.Size = new System.Drawing.Size(100, 23);
+            this.anchorFileButton.Size = new System.Drawing.Size(90, 23);
             this.anchorFileButton.TabIndex = 8;
             this.anchorFileButton.Text = "Date anchor file";
             this.anchorFileButton.UseVisualStyleBackColor = true;
@@ -106,14 +107,15 @@
             // 
             // anchorFileTextBox
             // 
-            this.anchorFileTextBox.Location = new System.Drawing.Point(119, 49);
+            this.anchorFileTextBox.Location = new System.Drawing.Point(102, 49);
             this.anchorFileTextBox.Name = "anchorFileTextBox";
-            this.anchorFileTextBox.Size = new System.Drawing.Size(370, 20);
+            this.anchorFileTextBox.Size = new System.Drawing.Size(387, 20);
             this.anchorFileTextBox.TabIndex = 9;
             this.anchorFileTextBox.TextChanged += new System.EventHandler(this.anchorFileTextBox_TextChanged);
             // 
             // sourceGroupBox
             // 
+            this.sourceGroupBox.Controls.Add(this.removeSourceButton);
             this.sourceGroupBox.Controls.Add(this.photoDateTextBox);
             this.sourceGroupBox.Controls.Add(this.captureDateLabel);
             this.sourceGroupBox.Controls.Add(this.timeShiftPanel);
@@ -132,14 +134,24 @@
             // 
             this.timeShiftPanel.Controls.Add(this.timeShiftLabel);
             this.timeShiftPanel.Controls.Add(this.timeShiftTextBox);
-            this.timeShiftPanel.Location = new System.Drawing.Point(264, 75);
+            this.timeShiftPanel.Location = new System.Drawing.Point(334, 75);
             this.timeShiftPanel.Name = "timeShiftPanel";
-            this.timeShiftPanel.Size = new System.Drawing.Size(231, 27);
+            this.timeShiftPanel.Size = new System.Drawing.Size(160, 27);
             this.timeShiftPanel.TabIndex = 16;
             // 
             // anchorFileDialog
             // 
             this.anchorFileDialog.FileName = "openFileDialog1";
+            // 
+            // removeSourceButton
+            // 
+            this.removeSourceButton.Location = new System.Drawing.Point(7, 79);
+            this.removeSourceButton.Name = "removeSourceButton";
+            this.removeSourceButton.Size = new System.Drawing.Size(89, 23);
+            this.removeSourceButton.TabIndex = 17;
+            this.removeSourceButton.Text = "Remove";
+            this.removeSourceButton.UseVisualStyleBackColor = true;
+            this.removeSourceButton.Click += new System.EventHandler(this.removeSourceButton_Click);
             // 
             // SourceControl
             // 
@@ -170,5 +182,6 @@
         private System.Windows.Forms.FolderBrowserDialog rootFolderBrowserDialog;
         private System.Windows.Forms.OpenFileDialog anchorFileDialog;
         private System.Windows.Forms.Panel timeShiftPanel;
+        private System.Windows.Forms.Button removeSourceButton;
     }
 }

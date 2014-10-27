@@ -7,3 +7,13 @@ H:\workspace\PhotofileMerger\obj\Debug\ReadExif.MainForm.resources
 H:\workspace\PhotofileMerger\obj\Debug\ReadExif.Properties.Resources.resources
 H:\workspace\PhotofileMerger\obj\Debug\ReadExif.SourceControl.resources
 H:\workspace\PhotofileMerger\obj\Debug\PhotofileMerger.csproj.GenerateResource.Cache
+c:\Dima\PhotofileMerger\bin\Debug\ReadExif.exe.config
+c:\Dima\PhotofileMerger\bin\Debug\ReadExif.exe
+c:\Dima\PhotofileMerger\bin\Debug\ReadExif.pdb
+c:\Dima\PhotofileMerger\obj\Debug\PhotofileMerger.csprojResolveAssemblyReference.cache
+c:\Dima\PhotofileMerger\obj\Debug\ReadExif.MainForm.resources
+c:\Dima\PhotofileMerger\obj\Debug\ReadExif.Properties.Resources.resources
+c:\Dima\PhotofileMerger\obj\Debug\ReadExif.SourceControl.resources
+c:\Dima\PhotofileMerger\obj\Debug\PhotofileMerger.csproj.GenerateResource.Cache
+c:\Dima\PhotofileMerger\obj\Debug\ReadExif.exe
+c:\Dima\PhotofileMerger\obj\Debug\ReadExif.pdb

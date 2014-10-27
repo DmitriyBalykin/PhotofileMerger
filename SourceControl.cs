@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace PhotofileMerger
@@ -50,6 +51,7 @@ namespace PhotofileMerger
             sources++;
             Id = sources;
             Changed += SourceControl_Changed;
+            timeShiftLabelReplacer.Text = "              ";
         }
         void originPhotoDateChanged(object sender, EventArgs e)
         {
@@ -72,24 +74,38 @@ namespace PhotofileMerger
             }
             if (string.IsNullOrEmpty(originTime) || string.IsNullOrEmpty(sourceTime))
             {
-                timeShiftTextBox.Text = "";
+                clearTimeShiftBoxes("");
                 return;
             }
             DateTime originDateTime = getExifDateTime(origin_time);
             if (originDateTime.Equals(DateTime.MinValue))
             {
-                timeShiftTextBox.Text = "Origin time is incorrect";
+                clearTimeShiftBoxes("Origin time is incorrect");
                 return;
             }
             DateTime sourceDateTime = getExifDateTime(sourceTime);
             if (sourceDateTime.Equals(DateTime.MinValue))
             {
-                timeShiftTextBox.Text = "Source time is incorrect";
+                clearTimeShiftBoxes("Source time is incorrect");
                 return;
             }
 
             SourceTimeDiff = originDateTime.Subtract(sourceDateTime);
-            timeShiftTextBox.Text = SourceTimeDiff.ToString();
+            showTimeShiftBoxes();
+            updateTimeShiftTextBoxes();
+        }
+
+        private void updateTimeShiftTextBoxes()
+        {
+            string negativeSign = "+";
+            if(SourceTimeDiff.TotalSeconds < 0)
+            {
+                negativeSign = "-";
+            }
+            timeShiftDaysT.Text = string.Format("{0}{1}", negativeSign, Math.Abs(SourceTimeDiff.Days));
+            timeShiftHoursT.Text = string.Format("{0}", Math.Abs(SourceTimeDiff.Hours));
+            timeShiftMinutesT.Text = string.Format("{0}", Math.Abs(SourceTimeDiff.Minutes));
+            timeShiftSecondsT.Text = string.Format("{0}", Math.Abs(SourceTimeDiff.Seconds));
         }
         private DateTime getExifDateTime(string datestr) {
             CultureInfo provider = CultureInfo.InvariantCulture;
@@ -146,9 +162,24 @@ namespace PhotofileMerger
             return Id;
         }
 
-        private void timeShiftTextBox_TextChanged(object sender, EventArgs e)
+        private void timeShiftTextBoxes_TextChanged(object sender, EventArgs e)
         {
-
+            
         }
+
+        private void clearTimeShiftBoxes(string text) {
+            timeShiftSecondsT.Clear();
+            timeShiftMinutesT.Clear();
+            timeShiftHoursT.Clear();
+            timeShiftDaysT.Clear();
+            timeShiftValuePanel.Hide();
+            timeShiftLabelReplacer.Show();
+            timeShiftLabelReplacer.Text = text;
+        }
+        private void showTimeShiftBoxes() {
+            timeShiftLabelReplacer.Hide();
+            timeShiftValuePanel.Show();
+        }
+
     }
 }

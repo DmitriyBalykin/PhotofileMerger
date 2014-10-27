@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace PhotofileMerger
@@ -46,6 +44,11 @@ namespace PhotofileMerger
             {
                 sourcesPanel.RemoveSource(removedControl);
             }
+        }
+
+        private void goButton_Click(object sender, EventArgs e)
+        {
+            FileProcessor.MergeFiles(sourcesPanel.GetSourcesTimeMap());
         }
     }
 }

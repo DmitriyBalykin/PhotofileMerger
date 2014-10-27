@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Forms;
 
-namespace ReadExif
+namespace PhotofileMerger
 {
     public partial class SourceControl : UserControl
     {
@@ -10,15 +10,17 @@ namespace ReadExif
         
         private static int sources = 0;
 
+        public int Id;
+
         private static string origin_time;
 
         public delegate void ChangedEventHandler(object sender, OriginDateChangedEventArgs e);
 
-        public static event ChangedEventHandler Changed;
+        public event ChangedEventHandler Changed;
 
         public delegate void RemovedEventHandler(object sender, EventArgs e);
 
-        public static event RemovedEventHandler Removed;
+        public event RemovedEventHandler Removed;
 
         public static bool ORIGIN = true;
 
@@ -26,12 +28,9 @@ namespace ReadExif
 
         public SourceControl()
         {
-            InitializeComponent();
-            sources++;
+            initializeControl();
             sourceGroupBox.Text = "Source #" + sources;
-            Changed += SourceControl_Changed;
             photoDateTextBox.TextChanged += sourcePhotoDateChanged;
-
             if(!string.IsNullOrEmpty(origin_time)){
                 tryCountDiff(origin_time, photoDateTextBox.Text);
             }
@@ -39,15 +38,19 @@ namespace ReadExif
         
         public SourceControl(bool isOrigin)
         {
+            initializeControl();
             isOriginal = true;
-            InitializeComponent();
-            sources++;
             sourceGroupBox.Text = "Original source";
-            Changed += SourceControl_Changed;
             timeShiftPanel.Hide();
+            removeSourceButton.Hide();
             photoDateTextBox.TextChanged += originPhotoDateChanged;
         }
-
+        private void initializeControl() {
+            InitializeComponent();
+            sources++;
+            Id = sources;
+            Changed += SourceControl_Changed;
+        }
         void originPhotoDateChanged(object sender, EventArgs e)
         {
             OriginDateChangedEventArgs eventArgs = new OriginDateChangedEventArgs(photoDateTextBox.Text);
@@ -103,8 +106,8 @@ namespace ReadExif
         public string GetRootFolder() {
             return rootFolderTextBox.Text;
         }
-        public string GetTimeShift() {
-            return timeShiftTextBox.Text;
+        public TimeSpan GetTimeShift() {
+            return SourceTimeDiff;
         }
         private void rootFolderButton_Click(object sender, EventArgs e)
         {
@@ -130,7 +133,22 @@ namespace ReadExif
 
         private void removeSourceButton_Click(object sender, EventArgs e)
         {
-            Removed(sender, e);
+            Removed(this, e);
+        }
+
+        public override bool Equals(object obj)
+        {
+ 	         return (obj is SourceControl) && ((SourceControl)obj).Id == Id;
+        }
+
+        public override int GetHashCode()
+        {
+            return Id;
+        }
+
+        private void timeShiftTextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Drawing.Imaging;
 
 namespace PhotofileMerger
@@ -29,6 +31,11 @@ namespace PhotofileMerger
                 return "Invalid image file selected";
             }
             return "No origin data available";
+        }
+
+        internal static void MergeFiles(Dictionary<string, TimeSpan> dictionary)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

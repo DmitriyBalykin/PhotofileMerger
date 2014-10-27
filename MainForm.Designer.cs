@@ -38,7 +38,7 @@ namespace PhotofileMerger
             this.prefixTextBox = new System.Windows.Forms.TextBox();
             this.addSourceButton = new System.Windows.Forms.Button();
             this.goButton = new System.Windows.Forms.Button();
-            this.sourcesPanel = new Sources();
+            this.sourcesPanel = new PhotofileMerger.Sources();
             this.SuspendLayout();
             // 
             // button2
@@ -92,19 +92,17 @@ namespace PhotofileMerger
             this.goButton.TabIndex = 9;
             this.goButton.Text = "Go!";
             this.goButton.UseVisualStyleBackColor = true;
+            this.goButton.Click += new System.EventHandler(this.goButton_Click);
             // 
             // sourcesPanel
             // 
             this.sourcesPanel.AutoScroll = true;
             this.sourcesPanel.AutoSize = true;
-            this.sourcesPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.sourcesPanel.ColumnCount = 1;
-            this.sourcesPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.sourcesPanel.Location = new System.Drawing.Point(12, 89);
+            this.sourcesPanel.MaximumSize = new System.Drawing.Size(0, 450);
             this.sourcesPanel.Name = "sourcesPanel";
-            this.sourcesPanel.RowCount = 1;
-            this.sourcesPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.sourcesPanel.Size = new System.Drawing.Size(0, 0);
+            this.sourcesPanel.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
+            this.sourcesPanel.Size = new System.Drawing.Size(23, 3);
             this.sourcesPanel.TabIndex = 10;
             // 
             // MainForm
@@ -113,8 +111,8 @@ namespace PhotofileMerger
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(573, 97);
-            this.StartPosition = FormStartPosition.CenterScreen;
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(580, 97);
             this.Controls.Add(this.sourcesPanel);
             this.Controls.Add(this.goButton);
             this.Controls.Add(this.addSourceButton);
@@ -123,8 +121,9 @@ namespace PhotofileMerger
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.button2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.MaximumSize = new System.Drawing.Size(589, 500);
+            this.MaximumSize = new System.Drawing.Size(600, 600);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Photofile Merger";
             this.ResumeLayout(false);
             this.PerformLayout();

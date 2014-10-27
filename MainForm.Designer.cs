@@ -1,5 +1,5 @@
 ﻿using System.Windows.Forms;
-namespace ReadExif
+namespace PhotofileMerger
 {
     partial class MainForm
     {
@@ -38,7 +38,7 @@ namespace ReadExif
             this.prefixTextBox = new System.Windows.Forms.TextBox();
             this.addSourceButton = new System.Windows.Forms.Button();
             this.goButton = new System.Windows.Forms.Button();
-            this.sourcesPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.sourcesPanel = new Sources();
             this.SuspendLayout();
             // 
             // button2
@@ -140,7 +140,7 @@ namespace ReadExif
         private System.Windows.Forms.TextBox prefixTextBox;
         private System.Windows.Forms.Button addSourceButton;
         private System.Windows.Forms.Button goButton;
-        private System.Windows.Forms.TableLayoutPanel sourcesPanel;
+        private Sources sourcesPanel;
     }
 }
 

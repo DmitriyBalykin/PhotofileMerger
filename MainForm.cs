@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace ReadExif
+namespace PhotofileMerger
 {
     public partial class MainForm : Form
     {
-        private List<SourceControl> sources;
-
         public MainForm()
         {
             InitializeComponent();
-            sources = new List<SourceControl>();
 
             addControl(SourceControl.ORIGIN);
         }
@@ -38,8 +35,17 @@ namespace ReadExif
             {
                 control = new SourceControl();
             }
-            sources.Add(control);
-            sourcesPanel.Controls.Add(control);
+            control.Removed += control_Removed;
+            sourcesPanel.AddSource(control);
+        }
+
+        void control_Removed(object sender, EventArgs e)
+        {
+            SourceControl removedControl = sender as SourceControl;
+            if (removedControl != null)
+            {
+                sourcesPanel.RemoveSource(removedControl);
+            }
         }
     }
 }

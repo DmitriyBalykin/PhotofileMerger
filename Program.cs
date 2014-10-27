@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace ReadExif
+namespace PhotofileMerger
 {
     static class Program
     {

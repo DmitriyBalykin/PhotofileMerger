@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ReadExif
+namespace PhotofileMerger
 {
     public class OriginDateChangedEventArgs : EventArgs
     {

@@ -1,4 +1,4 @@
-﻿namespace ReadExif
+﻿namespace PhotofileMerger
 {
     partial class SourceControl
     {

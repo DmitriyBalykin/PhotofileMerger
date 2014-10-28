@@ -68,14 +68,26 @@ namespace PhotofileMerger
                     filesList.Add(new FileRecord(file, fileDate), file);
                 }
             }
-
+            //Copy files in order of date
             int totalDigitsCount = (int)Math.Round(Math.Log10(filesList.Count));
             string fileNameFormatter = string.Format("\\\\{0\\}\\{1,D{0}\\}.\\{2\\}", totalDigitsCount);
             int counter = 0;
-            foreach(string file in filesList.Keys)
+            foreach(string sourceFilePath in filesList.Values)
             {
-                string destFileName = string.Format(fileNameFormatter, filePrefix, counter, Path.GetExtension(file));
+                string destFileName = string.Format(fileNameFormatter, filePrefix, counter, Path.GetExtension(sourceFilePath));
+                string destFilePath = getDestFilePath(destFileName, destFolder);
+                File.Copy(sourceFilePath, destFilePath);
             }
+        }
+
+        private static string getDestFilePath(string fileName, string destRootFolder)
+        {
+            string destFolder = destRootFolder;
+            if(!Directory.Exists(destFolder))
+            {
+                Directory.CreateDirectory(destFolder);
+            }
+            return Path.Combine(destFolder, fileName);
         }
     }
 }

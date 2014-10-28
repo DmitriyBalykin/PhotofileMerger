@@ -52,7 +52,7 @@ namespace PhotofileMerger
 
         internal static void MergeFiles(Dictionary<string, TimeSpan> timeShiftDict, string destFolder, string filePrefix)
         {
-            SortedSet<FileRecord> filesList = new SortedSet<FileRecord>();
+            SortedList<FileRecord, string> filesList = new SortedList<FileRecord, string>();
             //Create dictionary of files by date
             foreach(string rootFolder in timeShiftDict.Keys)
             {
@@ -65,7 +65,7 @@ namespace PhotofileMerger
                 foreach(string file in files)
                 {
                     DateTime fileDate = GetExifDateTime(file).Add(timeShift);
-                    filesList.Add(file, fileDate);
+                    filesList.Add(new FileRecord(file, fileDate), file);
                 }
             }
 

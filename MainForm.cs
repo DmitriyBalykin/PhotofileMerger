@@ -16,7 +16,7 @@ namespace PhotofileMerger
         {
             DialogResult result = folderBrowserDialog1.ShowDialog();
             if(result == DialogResult.OK){
-                textBox2.Text = folderBrowserDialog1.SelectedPath;
+                destFolderPath.Text = folderBrowserDialog1.SelectedPath;
             }
         }
 
@@ -48,7 +48,7 @@ namespace PhotofileMerger
 
         private void goButton_Click(object sender, EventArgs e)
         {
-            FileProcessor.MergeFiles(sourcesPanel.GetSourcesTimeMap());
+            FileProcessor.MergeFiles(sourcesPanel.GetSourcesTimeMap(), destFolderPath.Text, prefixTextBox.Text);
         }
     }
 }

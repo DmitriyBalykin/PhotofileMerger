@@ -40,7 +40,6 @@
             this.removeSourceButton = new System.Windows.Forms.Button();
             this.timeShiftPanel = new System.Windows.Forms.Panel();
             this.timeShiftValuePanel = new System.Windows.Forms.Panel();
-            this.timeShiftLabelReplacer = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -61,13 +60,13 @@
             this.photoDateTextBox.Location = new System.Drawing.Point(199, 79);
             this.photoDateTextBox.Name = "photoDateTextBox";
             this.photoDateTextBox.ReadOnly = true;
-            this.photoDateTextBox.Size = new System.Drawing.Size(117, 20);
+            this.photoDateTextBox.Size = new System.Drawing.Size(115, 20);
             this.photoDateTextBox.TabIndex = 15;
             // 
             // captureDateLabel
             // 
             this.captureDateLabel.AutoSize = true;
-            this.captureDateLabel.Location = new System.Drawing.Point(102, 83);
+            this.captureDateLabel.Location = new System.Drawing.Point(99, 83);
             this.captureDateLabel.Name = "captureDateLabel";
             this.captureDateLabel.Size = new System.Drawing.Size(98, 13);
             this.captureDateLabel.TabIndex = 14;
@@ -76,14 +75,15 @@
             // timeShiftDaysT
             // 
             this.timeShiftDaysT.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.timeShiftDaysT.Location = new System.Drawing.Point(2, 2);
+            this.timeShiftDaysT.Location = new System.Drawing.Point(1, 2);
             this.timeShiftDaysT.Margin = new System.Windows.Forms.Padding(0);
             this.timeShiftDaysT.MaxLength = 5;
             this.timeShiftDaysT.Name = "timeShiftDaysT";
             this.timeShiftDaysT.Size = new System.Drawing.Size(32, 13);
             this.timeShiftDaysT.TabIndex = 13;
+            this.timeShiftDaysT.Text = "+0";
             this.timeShiftDaysT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.timeShiftDaysT.TextChanged += new System.EventHandler(this.timeShiftTextBoxes_TextChanged);
+            this.timeShiftDaysT.TextChanged += new System.EventHandler(this.timeShiftDaysTextBox_TextChanged);
             // 
             // timeShiftLabel
             // 
@@ -161,16 +161,15 @@
             // 
             this.timeShiftPanel.Controls.Add(this.timeShiftValuePanel);
             this.timeShiftPanel.Controls.Add(this.timeShiftLabel);
-            this.timeShiftPanel.Location = new System.Drawing.Point(314, 75);
+            this.timeShiftPanel.Location = new System.Drawing.Point(316, 75);
             this.timeShiftPanel.Name = "timeShiftPanel";
-            this.timeShiftPanel.Size = new System.Drawing.Size(176, 27);
+            this.timeShiftPanel.Size = new System.Drawing.Size(177, 27);
             this.timeShiftPanel.TabIndex = 16;
             // 
             // timeShiftValuePanel
             // 
             this.timeShiftValuePanel.BackColor = System.Drawing.SystemColors.Window;
             this.timeShiftValuePanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.timeShiftValuePanel.Controls.Add(this.timeShiftLabelReplacer);
             this.timeShiftValuePanel.Controls.Add(this.label4);
             this.timeShiftValuePanel.Controls.Add(this.label3);
             this.timeShiftValuePanel.Controls.Add(this.label2);
@@ -179,27 +178,15 @@
             this.timeShiftValuePanel.Controls.Add(this.timeShiftMinutesT);
             this.timeShiftValuePanel.Controls.Add(this.timeShiftHoursT);
             this.timeShiftValuePanel.Controls.Add(this.timeShiftDaysT);
-            this.timeShiftValuePanel.Location = new System.Drawing.Point(47, 4);
+            this.timeShiftValuePanel.Location = new System.Drawing.Point(49, 4);
             this.timeShiftValuePanel.Name = "timeShiftValuePanel";
-            this.timeShiftValuePanel.Size = new System.Drawing.Size(126, 20);
+            this.timeShiftValuePanel.Size = new System.Drawing.Size(124, 20);
             this.timeShiftValuePanel.TabIndex = 14;
-            this.timeShiftValuePanel.Visible = false;
-            // 
-            // timeShiftLabelReplacer
-            // 
-            this.timeShiftLabelReplacer.AutoSize = true;
-            this.timeShiftLabelReplacer.BackColor = System.Drawing.SystemColors.Window;
-            this.timeShiftLabelReplacer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.timeShiftLabelReplacer.Location = new System.Drawing.Point(2, 1);
-            this.timeShiftLabelReplacer.Name = "timeShiftLabelReplacer";
-            this.timeShiftLabelReplacer.Size = new System.Drawing.Size(56, 15);
-            this.timeShiftLabelReplacer.TabIndex = 19;
-            this.timeShiftLabelReplacer.Text = "Some text";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(35, 2);
+            this.label4.Location = new System.Drawing.Point(33, 2);
             this.label4.Margin = new System.Windows.Forms.Padding(0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(13, 13);
@@ -209,7 +196,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(61, 2);
+            this.label3.Location = new System.Drawing.Point(59, 2);
             this.label3.Margin = new System.Windows.Forms.Padding(0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(13, 13);
@@ -219,7 +206,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(86, 2);
+            this.label2.Location = new System.Drawing.Point(84, 2);
             this.label2.Margin = new System.Windows.Forms.Padding(0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(15, 13);
@@ -229,7 +216,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(112, 2);
+            this.label1.Location = new System.Drawing.Point(110, 2);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(12, 13);
@@ -239,38 +226,41 @@
             // timeShiftSecondsT
             // 
             this.timeShiftSecondsT.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.timeShiftSecondsT.Location = new System.Drawing.Point(100, 2);
+            this.timeShiftSecondsT.Location = new System.Drawing.Point(98, 2);
             this.timeShiftSecondsT.Margin = new System.Windows.Forms.Padding(0);
             this.timeShiftSecondsT.MaxLength = 2;
             this.timeShiftSecondsT.Name = "timeShiftSecondsT";
             this.timeShiftSecondsT.Size = new System.Drawing.Size(12, 13);
             this.timeShiftSecondsT.TabIndex = 14;
+            this.timeShiftSecondsT.Text = "0";
             this.timeShiftSecondsT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.timeShiftSecondsT.TextChanged += new System.EventHandler(this.timeShiftTextBoxes_TextChanged);
+            this.timeShiftSecondsT.TextChanged += new System.EventHandler(this.timeShiftMinSecTextBox_TextChanged);
             // 
             // timeShiftMinutesT
             // 
             this.timeShiftMinutesT.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.timeShiftMinutesT.Location = new System.Drawing.Point(74, 2);
+            this.timeShiftMinutesT.Location = new System.Drawing.Point(72, 2);
             this.timeShiftMinutesT.Margin = new System.Windows.Forms.Padding(0);
             this.timeShiftMinutesT.MaxLength = 2;
             this.timeShiftMinutesT.Name = "timeShiftMinutesT";
             this.timeShiftMinutesT.Size = new System.Drawing.Size(12, 13);
             this.timeShiftMinutesT.TabIndex = 14;
+            this.timeShiftMinutesT.Text = "0";
             this.timeShiftMinutesT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.timeShiftMinutesT.TextChanged += new System.EventHandler(this.timeShiftTextBoxes_TextChanged);
+            this.timeShiftMinutesT.TextChanged += new System.EventHandler(this.timeShiftMinSecTextBox_TextChanged);
             // 
             // timeShiftHoursT
             // 
             this.timeShiftHoursT.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.timeShiftHoursT.Location = new System.Drawing.Point(49, 2);
+            this.timeShiftHoursT.Location = new System.Drawing.Point(47, 2);
             this.timeShiftHoursT.Margin = new System.Windows.Forms.Padding(0);
             this.timeShiftHoursT.MaxLength = 2;
             this.timeShiftHoursT.Name = "timeShiftHoursT";
             this.timeShiftHoursT.Size = new System.Drawing.Size(12, 13);
             this.timeShiftHoursT.TabIndex = 14;
+            this.timeShiftHoursT.Text = "0";
             this.timeShiftHoursT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.timeShiftHoursT.TextChanged += new System.EventHandler(this.timeShiftTextBoxes_TextChanged);
+            this.timeShiftHoursT.TextChanged += new System.EventHandler(this.timeShiftHoursTextBox_TextChanged);
             // 
             // anchorFileDialog
             // 
@@ -319,6 +309,5 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label timeShiftLabelReplacer;
     }
 }

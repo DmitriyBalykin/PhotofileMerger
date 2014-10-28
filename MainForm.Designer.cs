@@ -33,7 +33,7 @@ namespace PhotofileMerger
         {
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.button2 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.destFolderPath = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.prefixTextBox = new System.Windows.Forms.TextBox();
             this.addSourceButton = new System.Windows.Forms.Button();
@@ -53,10 +53,10 @@ namespace PhotofileMerger
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(136, 15);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(419, 20);
-            this.textBox2.TabIndex = 3;
+            this.destFolderPath.Location = new System.Drawing.Point(136, 15);
+            this.destFolderPath.Name = "textBox2";
+            this.destFolderPath.Size = new System.Drawing.Size(419, 20);
+            this.destFolderPath.TabIndex = 3;
             // 
             // label1
             // 
@@ -118,7 +118,7 @@ namespace PhotofileMerger
             this.Controls.Add(this.addSourceButton);
             this.Controls.Add(this.prefixTextBox);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.destFolderPath);
             this.Controls.Add(this.button2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximumSize = new System.Drawing.Size(600, 600);
@@ -134,7 +134,7 @@ namespace PhotofileMerger
 
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox destFolderPath;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox prefixTextBox;
         private System.Windows.Forms.Button addSourceButton;

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -17,13 +16,15 @@ namespace PhotofileMerger
 
         public delegate void ChangedEventHandler(object sender, OriginDateChangedEventArgs e);
 
-        public event ChangedEventHandler Changed;
+        public static event ChangedEventHandler Changed;
 
         public delegate void RemovedEventHandler(object sender, EventArgs e);
 
         public event RemovedEventHandler Removed;
 
         public static bool ORIGIN = true;
+
+        private bool changeBlocked = false;
 
         public TimeSpan SourceTimeDiff;
 
@@ -51,7 +52,6 @@ namespace PhotofileMerger
             sources++;
             Id = sources;
             Changed += SourceControl_Changed;
-            timeShiftLabelReplacer.Text = "              ";
         }
         void originPhotoDateChanged(object sender, EventArgs e)
         {
@@ -74,29 +74,35 @@ namespace PhotofileMerger
             }
             if (string.IsNullOrEmpty(originTime) || string.IsNullOrEmpty(sourceTime))
             {
-                clearTimeShiftBoxes("");
+                clearTimeShiftBoxes();
                 return;
             }
-            DateTime originDateTime = getExifDateTime(origin_time);
+            DateTime originDateTime = FileProcessor.GetExifDateTime(origin_time);
             if (originDateTime.Equals(DateTime.MinValue))
             {
-                clearTimeShiftBoxes("Origin time is incorrect");
+                clearTimeShiftBoxes();
                 return;
             }
-            DateTime sourceDateTime = getExifDateTime(sourceTime);
+            DateTime sourceDateTime = FileProcessor.GetExifDateTime(sourceTime);
             if (sourceDateTime.Equals(DateTime.MinValue))
             {
-                clearTimeShiftBoxes("Source time is incorrect");
+                clearTimeShiftBoxes();
                 return;
             }
 
             SourceTimeDiff = originDateTime.Subtract(sourceDateTime);
-            showTimeShiftBoxes();
+            updateTimeShiftTextBoxes();
+        }
+
+        private void clearTimeShiftBoxes()
+        {
+            SourceTimeDiff = new TimeSpan(0);
             updateTimeShiftTextBoxes();
         }
 
         private void updateTimeShiftTextBoxes()
         {
+            changeBlocked = true;
             string negativeSign = "+";
             if(SourceTimeDiff.TotalSeconds < 0)
             {
@@ -106,18 +112,7 @@ namespace PhotofileMerger
             timeShiftHoursT.Text = string.Format("{0}", Math.Abs(SourceTimeDiff.Hours));
             timeShiftMinutesT.Text = string.Format("{0}", Math.Abs(SourceTimeDiff.Minutes));
             timeShiftSecondsT.Text = string.Format("{0}", Math.Abs(SourceTimeDiff.Seconds));
-        }
-        private DateTime getExifDateTime(string datestr) {
-            CultureInfo provider = CultureInfo.InvariantCulture;
-            //2013:09:14 15:15:19
-            string format = "yyyy:MM:dd HH:mm:ss";
-            try
-            {
-                return DateTime.ParseExact(datestr, format, provider);
-            }
-            catch {
-                return DateTime.MinValue;
-            }
+            changeBlocked = false;
         }
         public string GetRootFolder() {
             return rootFolderTextBox.Text;
@@ -161,25 +156,79 @@ namespace PhotofileMerger
         {
             return Id;
         }
-
-        private void timeShiftTextBoxes_TextChanged(object sender, EventArgs e)
+        private void timeShiftDaysTextBox_TextChanged(object sender, EventArgs e)
         {
-            
+            if (changeBlocked)
+            {
+                return;
+            }
+            Regex digits = new Regex(@"-?\d{1,2}");
+            if (string.IsNullOrEmpty(timeShiftDaysT.Text))
+            {
+                timeShiftDaysT.Text = "0";
+            }
+            if (!digits.IsMatch(timeShiftDaysT.Text))
+            {
+                updateTimeShiftTextBoxes();
+                return;
+            }
+            storeTimeShift();
+            updateTimeShiftTextBoxes();
         }
 
-        private void clearTimeShiftBoxes(string text) {
-            timeShiftSecondsT.Clear();
-            timeShiftMinutesT.Clear();
-            timeShiftHoursT.Clear();
-            timeShiftDaysT.Clear();
-            timeShiftValuePanel.Hide();
-            timeShiftLabelReplacer.Show();
-            timeShiftLabelReplacer.Text = text;
+        
+        private void timeShiftHoursTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (changeBlocked)
+            {
+                return;
+            }
+            Regex digits = new Regex(@"\d{1,2}");
+                if (string.IsNullOrEmpty(timeShiftHoursT.Text))
+                {
+                    timeShiftHoursT.Text = "0";
+                }
+                if (!digits.IsMatch(timeShiftHoursT.Text))
+                {
+                    updateTimeShiftTextBoxes();
+                    return;
+                }
+                storeTimeShift();
+                updateTimeShiftTextBoxes();
         }
-        private void showTimeShiftBoxes() {
-            timeShiftLabelReplacer.Hide();
-            timeShiftValuePanel.Show();
+        private void timeShiftMinSecTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if(changeBlocked)
+            {
+                return;
+            }
+            TextBox tbSender = sender as TextBox;
+            Regex digits = new Regex(@"\d{1,2}");
+            if (tbSender != null)
+            {
+                if (string.IsNullOrEmpty(tbSender.Text))
+                {
+                    tbSender.Text = "0";
+                }
+                if (!digits.IsMatch(tbSender.Text))
+                {
+                    updateTimeShiftTextBoxes();
+                    return;
+                }
+                storeTimeShift();
+                updateTimeShiftTextBoxes();
+            }
         }
-
+        private void storeTimeShift()
+        {
+            string shiftStr = string.Format(
+                "{0}.{1}:{2}:{3}",
+                timeShiftDaysT.Text.Replace("+", ""),
+                timeShiftHoursT.Text,
+                timeShiftMinutesT.Text,
+                timeShiftSecondsT.Text
+                );
+            SourceTimeDiff = TimeSpan.Parse(shiftStr);
+        }
     }
 }

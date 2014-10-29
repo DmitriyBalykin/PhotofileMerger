@@ -90,7 +90,7 @@ namespace PhotofileMerger
                 return;
             }
 
-            SourceTimeDiff = originDateTime.Subtract(sourceDateTime);
+            SourceTimeDiff = sourceDateTime.Subtract(originDateTime);
             updateTimeShiftTextBoxes();
         }
 
@@ -104,7 +104,7 @@ namespace PhotofileMerger
         {
             changeBlocked = true;
             string sign = "+";
-            if(SourceTimeDiff.TotalSeconds > 0)
+            if(SourceTimeDiff.TotalSeconds < 0)
             {
                 sign = "-";
             }

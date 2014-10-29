@@ -1,15 +1,33 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace PhotofileMerger
 {
     public partial class MainForm : Form
     {
+        private static string DEFAULT_FILE_PREFIX = "Image_";
+
+        public delegate void ProgressMoved(ProgressChangedEventArgs e);
+        public event ProgressMoved Progressed;
         public MainForm()
         {
             InitializeComponent();
 
+            Progressed += MainForm_Progressed;
+
+            prefixTextBox.Text = DEFAULT_FILE_PREFIX;
+
             addControl(SourceControl.ORIGIN);
+        }
+
+        void MainForm_Progressed(ProgressChangedEventArgs e)
+        {
+            if(!progressBar.Visible)
+            {
+                progressBar.Visible = true;
+            }
+            progressBar.Value = e.Progress;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -48,7 +66,19 @@ namespace PhotofileMerger
 
         private void goButton_Click(object sender, EventArgs e)
         {
-            FileProcessor.MergeFiles(sourcesPanel.GetSourcesTimeMap(), destFolderPath.Text, prefixTextBox.Text);
+            FileProcessor.MergeFiles(sourcesPanel.GetSourcesTimeMap(), destFolderPath.Text, prefixTextBox.Text, Progressed);
+        }
+
+        private void destFolderPath_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(destFolderPath.Text) || !Directory.Exists(destFolderPath.Text))
+            {
+                goButton.Enabled = false;
+            }
+            else
+            {
+                goButton.Enabled = true;
+            }
         }
     }
 }

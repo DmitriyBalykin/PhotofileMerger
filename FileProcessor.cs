@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
+using System.Windows.Forms;
 
 namespace PhotofileMerger
 {
@@ -18,14 +19,13 @@ namespace PhotofileMerger
             {
                 Bitmap image = new Bitmap(fileName);
                 PropertyItem[] propItems = image.PropertyItems;
-                string strValue;
                 int id;
                 foreach (PropertyItem item in propItems)
                 {
                     id = item.Id;
-                    strValue = System.Text.Encoding.UTF8.GetString(item.Value);
                     if (id == ORIGIN_DT)
                     {
+                        string strValue = System.Text.Encoding.UTF8.GetString(item.Value).Replace("\0","");
                         return strValue;
                     }
                 }
@@ -50,7 +50,7 @@ namespace PhotofileMerger
             }
         }
 
-        internal static void MergeFiles(Dictionary<string, TimeSpan> timeShiftDict, string destFolder, string filePrefix)
+        internal static void MergeFiles(Dictionary<string, TimeSpan> timeShiftDict, string destFolder, string filePrefix, MainForm.ProgressMoved progressed)
         {
             SortedList<FileRecord, string> filesList = new SortedList<FileRecord, string>();
             //Create dictionary of files by date
@@ -64,19 +64,30 @@ namespace PhotofileMerger
                 string[] files = Directory.GetFiles(rootFolder, "*.*", SearchOption.AllDirectories);
                 foreach(string file in files)
                 {
-                    DateTime fileDate = GetExifDateTime(file).Add(timeShift);
+                    DateTime origExifDate = GetExifDateTime(GetFileExifDate(file));
+                    DateTime fileDate = origExifDate.Add(timeShift);
                     filesList.Add(new FileRecord(file, fileDate), file);
                 }
             }
             //Copy files in order of date
-            int totalDigitsCount = (int)Math.Round(Math.Log10(filesList.Count));
-            string fileNameFormatter = string.Format("\\\\{0\\}\\{1,D{0}\\}.\\{2\\}", totalDigitsCount);
+            int totalDigitsCount = (int)Math.Ceiling(Math.Log10(filesList.Count));
             int counter = 0;
+            int totalCount = filesList.Count;
             foreach(string sourceFilePath in filesList.Values)
             {
-                string destFileName = string.Format(fileNameFormatter, filePrefix, counter, Path.GetExtension(sourceFilePath));
+                counter++;
+                string destFileName = string.Format("{0}{1}{2}", filePrefix, counter.ToString("D" + totalDigitsCount), Path.GetExtension(sourceFilePath));
                 string destFilePath = getDestFilePath(destFileName, destFolder);
-                File.Copy(sourceFilePath, destFilePath);
+                try
+                {
+                    File.Copy(sourceFilePath, destFilePath, true);
+                }
+                catch
+                {
+                    MessageBox.Show("Cannot copy image to file " + destFilePath);
+                }
+                
+                progressed(new ProgressChangedEventArgs(100 * (double)counter / (double)totalCount));
             }
         }
 

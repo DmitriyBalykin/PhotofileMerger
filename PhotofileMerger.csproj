@@ -55,6 +55,7 @@
     </Compile>
     <Compile Include="OriginDateChangedEvent.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="ProgressChangedEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SourceControl.cs">
       <SubType>UserControl</SubType>

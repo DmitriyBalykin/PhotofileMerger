@@ -21,8 +21,6 @@ namespace PhotofileMerger
             base.Dispose(disposing);
         }
 
-        private static string DEFAULT_FILE_PREFIX = "Image_";
-
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -38,6 +36,7 @@ namespace PhotofileMerger
             this.prefixTextBox = new System.Windows.Forms.TextBox();
             this.addSourceButton = new System.Windows.Forms.Button();
             this.goButton = new System.Windows.Forms.Button();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.sourcesPanel = new PhotofileMerger.Sources();
             this.SuspendLayout();
             // 
@@ -51,12 +50,13 @@ namespace PhotofileMerger
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // textBox2
+            // destFolderPath
             // 
             this.destFolderPath.Location = new System.Drawing.Point(136, 15);
-            this.destFolderPath.Name = "textBox2";
+            this.destFolderPath.Name = "destFolderPath";
             this.destFolderPath.Size = new System.Drawing.Size(419, 20);
             this.destFolderPath.TabIndex = 3;
+            this.destFolderPath.TextChanged += new System.EventHandler(this.destFolderPath_TextChanged);
             // 
             // label1
             // 
@@ -86,6 +86,7 @@ namespace PhotofileMerger
             // 
             // goButton
             // 
+            this.goButton.Enabled = false;
             this.goButton.Location = new System.Drawing.Point(468, 66);
             this.goButton.Name = "goButton";
             this.goButton.Size = new System.Drawing.Size(87, 23);
@@ -94,11 +95,19 @@ namespace PhotofileMerger
             this.goButton.UseVisualStyleBackColor = true;
             this.goButton.Click += new System.EventHandler(this.goButton_Click);
             // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(20, 96);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(535, 17);
+            this.progressBar.TabIndex = 11;
+            this.progressBar.Visible = false;
+            // 
             // sourcesPanel
             // 
             this.sourcesPanel.AutoScroll = true;
             this.sourcesPanel.AutoSize = true;
-            this.sourcesPanel.Location = new System.Drawing.Point(12, 89);
+            this.sourcesPanel.Location = new System.Drawing.Point(12, 121);
             this.sourcesPanel.MaximumSize = new System.Drawing.Size(0, 450);
             this.sourcesPanel.Name = "sourcesPanel";
             this.sourcesPanel.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
@@ -112,7 +121,8 @@ namespace PhotofileMerger
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(580, 97);
+            this.ClientSize = new System.Drawing.Size(580, 125);
+            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.sourcesPanel);
             this.Controls.Add(this.goButton);
             this.Controls.Add(this.addSourceButton);
@@ -140,6 +150,7 @@ namespace PhotofileMerger
         private System.Windows.Forms.Button addSourceButton;
         private System.Windows.Forms.Button goButton;
         private Sources sourcesPanel;
+        private ProgressBar progressBar;
     }
 }
 

@@ -57,7 +57,7 @@
             // photoDateTextBox
             // 
             this.photoDateTextBox.BackColor = System.Drawing.SystemColors.Window;
-            this.photoDateTextBox.Location = new System.Drawing.Point(199, 79);
+            this.photoDateTextBox.Location = new System.Drawing.Point(201, 79);
             this.photoDateTextBox.Name = "photoDateTextBox";
             this.photoDateTextBox.ReadOnly = true;
             this.photoDateTextBox.Size = new System.Drawing.Size(115, 20);
@@ -88,7 +88,7 @@
             // timeShiftLabel
             // 
             this.timeShiftLabel.AutoSize = true;
-            this.timeShiftLabel.Location = new System.Drawing.Point(-1, 7);
+            this.timeShiftLabel.Location = new System.Drawing.Point(6, 7);
             this.timeShiftLabel.Name = "timeShiftLabel";
             this.timeShiftLabel.Size = new System.Drawing.Size(52, 13);
             this.timeShiftLabel.TabIndex = 12;
@@ -98,7 +98,7 @@
             // 
             this.rootFolderTextBox.Location = new System.Drawing.Point(102, 21);
             this.rootFolderTextBox.Name = "rootFolderTextBox";
-            this.rootFolderTextBox.Size = new System.Drawing.Size(387, 20);
+            this.rootFolderTextBox.Size = new System.Drawing.Size(406, 20);
             this.rootFolderTextBox.TabIndex = 11;
             // 
             // rootFolderButton
@@ -125,7 +125,7 @@
             // 
             this.anchorFileTextBox.Location = new System.Drawing.Point(102, 49);
             this.anchorFileTextBox.Name = "anchorFileTextBox";
-            this.anchorFileTextBox.Size = new System.Drawing.Size(387, 20);
+            this.anchorFileTextBox.Size = new System.Drawing.Size(406, 20);
             this.anchorFileTextBox.TabIndex = 9;
             this.anchorFileTextBox.TextChanged += new System.EventHandler(this.anchorFileTextBox_TextChanged);
             // 
@@ -142,7 +142,7 @@
             this.sourceGroupBox.Controls.Add(this.rootFolderTextBox);
             this.sourceGroupBox.Location = new System.Drawing.Point(3, 3);
             this.sourceGroupBox.Name = "sourceGroupBox";
-            this.sourceGroupBox.Size = new System.Drawing.Size(500, 108);
+            this.sourceGroupBox.Size = new System.Drawing.Size(514, 108);
             this.sourceGroupBox.TabIndex = 16;
             this.sourceGroupBox.TabStop = false;
             this.sourceGroupBox.Text = "Source #";
@@ -163,7 +163,7 @@
             this.timeShiftPanel.Controls.Add(this.timeShiftLabel);
             this.timeShiftPanel.Location = new System.Drawing.Point(316, 75);
             this.timeShiftPanel.Name = "timeShiftPanel";
-            this.timeShiftPanel.Size = new System.Drawing.Size(177, 27);
+            this.timeShiftPanel.Size = new System.Drawing.Size(192, 27);
             this.timeShiftPanel.TabIndex = 16;
             // 
             // timeShiftValuePanel
@@ -178,7 +178,7 @@
             this.timeShiftValuePanel.Controls.Add(this.timeShiftMinutesT);
             this.timeShiftValuePanel.Controls.Add(this.timeShiftHoursT);
             this.timeShiftValuePanel.Controls.Add(this.timeShiftDaysT);
-            this.timeShiftValuePanel.Location = new System.Drawing.Point(49, 4);
+            this.timeShiftValuePanel.Location = new System.Drawing.Point(68, 4);
             this.timeShiftValuePanel.Name = "timeShiftValuePanel";
             this.timeShiftValuePanel.Size = new System.Drawing.Size(124, 20);
             this.timeShiftValuePanel.TabIndex = 14;
@@ -270,10 +270,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.SandyBrown;
             this.Controls.Add(this.sourceGroupBox);
             this.Name = "SourceControl";
-            this.Size = new System.Drawing.Size(506, 115);
+            this.Size = new System.Drawing.Size(520, 115);
             this.sourceGroupBox.ResumeLayout(false);
             this.sourceGroupBox.PerformLayout();
             this.timeShiftPanel.ResumeLayout(false);

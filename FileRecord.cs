@@ -25,7 +25,14 @@ namespace PhotofileMerger
 
         public int CompareTo(FileRecord record)
         {
-            return record.Time.CompareTo(Time);
+            if (Time.CompareTo(record.Time) != 0)
+            {
+                return Time.CompareTo(record.Time);
+            }
+            else
+            {
+                return Name.CompareTo(record.Name);
+            }
         }
     }
 }

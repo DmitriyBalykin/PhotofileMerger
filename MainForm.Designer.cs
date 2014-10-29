@@ -37,12 +37,18 @@ namespace PhotofileMerger
             this.addSourceButton = new System.Windows.Forms.Button();
             this.goButton = new System.Windows.Forms.Button();
             this.progressBar = new System.Windows.Forms.ProgressBar();
-            this.sourcesPanel = new PhotofileMerger.Sources();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.filesSortingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.yearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.monthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(20, 13);
+            this.button2.Location = new System.Drawing.Point(20, 37);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 23);
             this.button2.TabIndex = 2;
@@ -52,7 +58,7 @@ namespace PhotofileMerger
             // 
             // destFolderPath
             // 
-            this.destFolderPath.Location = new System.Drawing.Point(136, 15);
+            this.destFolderPath.Location = new System.Drawing.Point(136, 39);
             this.destFolderPath.Name = "destFolderPath";
             this.destFolderPath.Size = new System.Drawing.Size(419, 20);
             this.destFolderPath.TabIndex = 3;
@@ -61,7 +67,7 @@ namespace PhotofileMerger
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 43);
+            this.label1.Location = new System.Drawing.Point(12, 67);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(111, 13);
             this.label1.TabIndex = 5;
@@ -69,14 +75,14 @@ namespace PhotofileMerger
             // 
             // prefixTextBox
             // 
-            this.prefixTextBox.Location = new System.Drawing.Point(136, 40);
+            this.prefixTextBox.Location = new System.Drawing.Point(136, 64);
             this.prefixTextBox.Name = "prefixTextBox";
             this.prefixTextBox.Size = new System.Drawing.Size(419, 20);
             this.prefixTextBox.TabIndex = 6;
             // 
             // addSourceButton
             // 
-            this.addSourceButton.Location = new System.Drawing.Point(20, 66);
+            this.addSourceButton.Location = new System.Drawing.Point(20, 90);
             this.addSourceButton.Name = "addSourceButton";
             this.addSourceButton.Size = new System.Drawing.Size(100, 23);
             this.addSourceButton.TabIndex = 8;
@@ -87,7 +93,7 @@ namespace PhotofileMerger
             // goButton
             // 
             this.goButton.Enabled = false;
-            this.goButton.Location = new System.Drawing.Point(468, 66);
+            this.goButton.Location = new System.Drawing.Point(468, 90);
             this.goButton.Name = "goButton";
             this.goButton.Size = new System.Drawing.Size(87, 23);
             this.goButton.TabIndex = 9;
@@ -97,22 +103,60 @@ namespace PhotofileMerger
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(20, 96);
+            this.progressBar.Location = new System.Drawing.Point(20, 120);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(535, 17);
             this.progressBar.TabIndex = 11;
             this.progressBar.Visible = false;
             // 
-            // sourcesPanel
+            // menuStrip1
             // 
-            this.sourcesPanel.AutoScroll = true;
-            this.sourcesPanel.AutoSize = true;
-            this.sourcesPanel.Location = new System.Drawing.Point(12, 121);
-            this.sourcesPanel.MaximumSize = new System.Drawing.Size(0, 450);
-            this.sourcesPanel.Name = "sourcesPanel";
-            this.sourcesPanel.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
-            this.sourcesPanel.Size = new System.Drawing.Size(23, 3);
-            this.sourcesPanel.TabIndex = 10;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(580, 24);
+            this.menuStrip1.TabIndex = 12;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // menuToolStripMenuItem
+            // 
+            this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.filesSortingToolStripMenuItem});
+            this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
+            this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.menuToolStripMenuItem.Text = "Menu";
+            // 
+            // filesSortingToolStripMenuItem
+            // 
+            this.filesSortingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.yearToolStripMenuItem,
+            this.monthToolStripMenuItem,
+            this.dayToolStripMenuItem});
+            this.filesSortingToolStripMenuItem.Name = "filesSortingToolStripMenuItem";
+            this.filesSortingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.filesSortingToolStripMenuItem.Text = "Files group by";
+            // 
+            // yearToolStripMenuItem
+            // 
+            this.yearToolStripMenuItem.CheckOnClick = true;
+            this.yearToolStripMenuItem.Name = "yearToolStripMenuItem";
+            this.yearToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.yearToolStripMenuItem.Text = "Year";
+            // 
+            // monthToolStripMenuItem
+            // 
+            this.monthToolStripMenuItem.CheckOnClick = true;
+            this.monthToolStripMenuItem.Name = "monthToolStripMenuItem";
+            this.monthToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.monthToolStripMenuItem.Text = "Month";
+            // 
+            // dayToolStripMenuItem
+            // 
+            this.dayToolStripMenuItem.CheckOnClick = true;
+            this.dayToolStripMenuItem.Name = "dayToolStripMenuItem";
+            this.dayToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.dayToolStripMenuItem.Text = "Day";
             // 
             // MainForm
             // 
@@ -121,20 +165,23 @@ namespace PhotofileMerger
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(580, 125);
+            this.ClientSize = new System.Drawing.Size(580, 149);
             this.Controls.Add(this.progressBar);
-            this.Controls.Add(this.sourcesPanel);
             this.Controls.Add(this.goButton);
             this.Controls.Add(this.addSourceButton);
             this.Controls.Add(this.prefixTextBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.destFolderPath);
             this.Controls.Add(this.button2);
+            this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MainMenuStrip = this.menuStrip1;
             this.MaximumSize = new System.Drawing.Size(600, 600);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Photofile Merger";
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -151,6 +198,12 @@ namespace PhotofileMerger
         private System.Windows.Forms.Button goButton;
         private Sources sourcesPanel;
         private ProgressBar progressBar;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem menuToolStripMenuItem;
+        private ToolStripMenuItem filesSortingToolStripMenuItem;
+        private ToolStripMenuItem yearToolStripMenuItem;
+        private ToolStripMenuItem monthToolStripMenuItem;
+        private ToolStripMenuItem dayToolStripMenuItem;
     }
 }
 

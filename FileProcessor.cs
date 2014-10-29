@@ -50,7 +50,7 @@ namespace PhotofileMerger
             }
         }
 
-        internal static void MergeFiles(Dictionary<string, TimeSpan> timeShiftDict, string destFolder, string filePrefix, MainForm.ProgressMoved progressed)
+        internal static void MergeFiles(Dictionary<string, TimeSpan> timeShiftDict, string destFolder, string filePrefix, MainForm.ProgressMoved progressed, Grouping grouping)
         {
             SortedList<FileRecord, string> filesList = new SortedList<FileRecord, string>();
             //Create dictionary of files by date
@@ -73,11 +73,14 @@ namespace PhotofileMerger
             int totalDigitsCount = (int)Math.Ceiling(Math.Log10(filesList.Count));
             int counter = 0;
             int totalCount = filesList.Count;
-            foreach(string sourceFilePath in filesList.Values)
+            foreach(KeyValuePair<FileRecord, string> kvp in filesList)
             {
                 counter++;
+
+                string sourceFilePath = kvp.Value;
                 string destFileName = string.Format("{0}{1}{2}", filePrefix, counter.ToString("D" + totalDigitsCount), Path.GetExtension(sourceFilePath));
-                string destFilePath = getDestFilePath(destFileName, destFolder);
+                DateTime destFileDate = kvp.Key.Time;
+                string destFilePath = getDestFilePath(destFileName, destFolder, grouping, destFileDate);
                 try
                 {
                     File.Copy(sourceFilePath, destFilePath, true);
@@ -91,9 +94,21 @@ namespace PhotofileMerger
             }
         }
 
-        private static string getDestFilePath(string fileName, string destRootFolder)
+        private static string getDestFilePath(string fileName, string destRootFolder, Grouping grouping, DateTime destFileDate)
         {
             string destFolder = destRootFolder;
+            if(grouping.ByYear)
+            {
+                destFolder = Path.Combine(destFolder, destFileDate.Year.ToString("D4"));
+            }
+            if (grouping.ByMonth)
+            {
+                destFolder = Path.Combine(destFolder, destFileDate.ToString("MMMM", CultureInfo.InstalledUICulture));
+            }
+            if (grouping.ByDay)
+            {
+                destFolder = Path.Combine(destFolder, destFileDate.Day.ToString("D2"));
+            }
             if(!Directory.Exists(destFolder))
             {
                 Directory.CreateDirectory(destFolder);

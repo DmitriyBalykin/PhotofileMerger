@@ -10,15 +10,32 @@ namespace PhotofileMerger
 
         public delegate void ProgressMoved(ProgressChangedEventArgs e);
         public event ProgressMoved Progressed;
+
         public MainForm()
         {
             InitializeComponent();
+            initializeSourcesPanel();
 
             Progressed += MainForm_Progressed;
 
             prefixTextBox.Text = DEFAULT_FILE_PREFIX;
 
             addControl(SourceControl.ORIGIN);
+        }
+
+        private void initializeSourcesPanel()
+        {
+            sourcesPanel = new PhotofileMerger.Sources();
+            sourcesPanel.AutoScroll = true;
+            sourcesPanel.AutoSize = true;
+            sourcesPanel.Location = new System.Drawing.Point(12, 140);
+            sourcesPanel.MaximumSize = new System.Drawing.Size(0, 450);
+            sourcesPanel.Name = "sourcesPanel";
+            sourcesPanel.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
+            sourcesPanel.Size = new System.Drawing.Size(23, 3);
+            sourcesPanel.TabIndex = 10;
+
+            Controls.Add(this.sourcesPanel);
         }
 
         void MainForm_Progressed(ProgressChangedEventArgs e)
@@ -66,7 +83,20 @@ namespace PhotofileMerger
 
         private void goButton_Click(object sender, EventArgs e)
         {
-            FileProcessor.MergeFiles(sourcesPanel.GetSourcesTimeMap(), destFolderPath.Text, prefixTextBox.Text, Progressed);
+            bool groupByYear = yearToolStripMenuItem.Checked;
+            bool groupByMonth = monthToolStripMenuItem.Checked;
+            bool groupByDay = dayToolStripMenuItem.Checked;
+
+            FileProcessor.MergeFiles(
+                sourcesPanel.GetSourcesTimeMap(),
+                destFolderPath.Text,
+                prefixTextBox.Text,
+                Progressed,
+                new Grouping(
+                    yearToolStripMenuItem.Checked,
+                    monthToolStripMenuItem.Checked,
+                    dayToolStripMenuItem.Checked
+                    ));
         }
 
         private void destFolderPath_TextChanged(object sender, EventArgs e)

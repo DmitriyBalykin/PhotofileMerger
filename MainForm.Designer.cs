@@ -43,6 +43,9 @@ namespace PhotofileMerger
             this.yearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.monthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.whatsGoingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -112,7 +115,8 @@ namespace PhotofileMerger
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuToolStripMenuItem});
+            this.menuToolStripMenuItem,
+            this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(580, 24);
@@ -134,29 +138,52 @@ namespace PhotofileMerger
             this.monthToolStripMenuItem,
             this.dayToolStripMenuItem});
             this.filesSortingToolStripMenuItem.Name = "filesSortingToolStripMenuItem";
-            this.filesSortingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.filesSortingToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.filesSortingToolStripMenuItem.Text = "Files group by";
             // 
             // yearToolStripMenuItem
             // 
             this.yearToolStripMenuItem.CheckOnClick = true;
             this.yearToolStripMenuItem.Name = "yearToolStripMenuItem";
-            this.yearToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.yearToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.yearToolStripMenuItem.Text = "Year";
             // 
             // monthToolStripMenuItem
             // 
             this.monthToolStripMenuItem.CheckOnClick = true;
             this.monthToolStripMenuItem.Name = "monthToolStripMenuItem";
-            this.monthToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.monthToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.monthToolStripMenuItem.Text = "Month";
             // 
             // dayToolStripMenuItem
             // 
             this.dayToolStripMenuItem.CheckOnClick = true;
             this.dayToolStripMenuItem.Name = "dayToolStripMenuItem";
-            this.dayToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.dayToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.dayToolStripMenuItem.Text = "Day";
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.whatsGoingToolStripMenuItem,
+            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // whatsGoingToolStripMenuItem
+            // 
+            this.whatsGoingToolStripMenuItem.Name = "whatsGoingToolStripMenuItem";
+            this.whatsGoingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.whatsGoingToolStripMenuItem.Text = "What\'s going?";
+            this.whatsGoingToolStripMenuItem.Click += new System.EventHandler(this.whatsGoingToolStripMenuItem_Click);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -204,6 +231,9 @@ namespace PhotofileMerger
         private ToolStripMenuItem yearToolStripMenuItem;
         private ToolStripMenuItem monthToolStripMenuItem;
         private ToolStripMenuItem dayToolStripMenuItem;
+        private ToolStripMenuItem helpToolStripMenuItem;
+        private ToolStripMenuItem whatsGoingToolStripMenuItem;
+        private ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
 

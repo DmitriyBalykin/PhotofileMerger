@@ -103,12 +103,12 @@ namespace PhotofileMerger
         private void updateTimeShiftTextBoxes()
         {
             changeBlocked = true;
-            string negativeSign = "+";
-            if(SourceTimeDiff.TotalSeconds < 0)
+            string sign = "+";
+            if(SourceTimeDiff.TotalSeconds > 0)
             {
-                negativeSign = "-";
+                sign = "-";
             }
-            timeShiftDaysT.Text = string.Format("{0}{1}", negativeSign, Math.Abs(SourceTimeDiff.Days));
+            timeShiftDaysT.Text = string.Format("{0}{1}", sign, Math.Abs(SourceTimeDiff.Days));
             timeShiftHoursT.Text = string.Format("{0}", Math.Abs(SourceTimeDiff.Hours));
             timeShiftMinutesT.Text = string.Format("{0}", Math.Abs(SourceTimeDiff.Minutes));
             timeShiftSecondsT.Text = string.Format("{0}", Math.Abs(SourceTimeDiff.Seconds));

@@ -110,5 +110,18 @@ namespace PhotofileMerger
                 goButton.Enabled = true;
             }
         }
+
+        private void whatsGoingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string manual = "To align files from different sources by date select anchor files from each source. By default each pair from origin source and numbered " +
+            " source will be recognized as taken in one time, so difference in time between them will be subtracted to aling both sources.\n Change difference value if this files" +
+            " was taken in different time.";
+            MessageBox.Show(manual);
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Merger for photo files by Dmitriy Balykin\n (C) 2014");
+        }
     }
 }

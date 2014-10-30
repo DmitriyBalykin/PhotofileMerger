@@ -65,7 +65,7 @@ namespace PhotofileMerger
             // 
             // destFolderPath
             // 
-            this.destFolderPath.Location = new System.Drawing.Point(123, 31);
+            this.destFolderPath.Location = new System.Drawing.Point(123, 5);
             this.destFolderPath.Name = "destFolderPath";
             this.destFolderPath.Size = new System.Drawing.Size(419, 20);
             this.destFolderPath.TabIndex = 3;
@@ -82,7 +82,7 @@ namespace PhotofileMerger
             // 
             // prefixTextBox
             // 
-            this.prefixTextBox.Location = new System.Drawing.Point(123, 5);
+            this.prefixTextBox.Location = new System.Drawing.Point(122, 31);
             this.prefixTextBox.Name = "prefixTextBox";
             this.prefixTextBox.Size = new System.Drawing.Size(419, 20);
             this.prefixTextBox.TabIndex = 6;
@@ -132,7 +132,7 @@ namespace PhotofileMerger
             this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.filesSortingToolStripMenuItem});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
-            this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.menuToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
             this.menuToolStripMenuItem.Text = "Menu";
             // 
             // filesSortingToolStripMenuItem
@@ -142,28 +142,28 @@ namespace PhotofileMerger
             this.monthToolStripMenuItem,
             this.dayToolStripMenuItem});
             this.filesSortingToolStripMenuItem.Name = "filesSortingToolStripMenuItem";
-            this.filesSortingToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.filesSortingToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.filesSortingToolStripMenuItem.Text = "Files group by";
             // 
             // yearToolStripMenuItem
             // 
             this.yearToolStripMenuItem.CheckOnClick = true;
             this.yearToolStripMenuItem.Name = "yearToolStripMenuItem";
-            this.yearToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.yearToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
             this.yearToolStripMenuItem.Text = "Year";
             // 
             // monthToolStripMenuItem
             // 
             this.monthToolStripMenuItem.CheckOnClick = true;
             this.monthToolStripMenuItem.Name = "monthToolStripMenuItem";
-            this.monthToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.monthToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
             this.monthToolStripMenuItem.Text = "Month";
             // 
             // dayToolStripMenuItem
             // 
             this.dayToolStripMenuItem.CheckOnClick = true;
             this.dayToolStripMenuItem.Name = "dayToolStripMenuItem";
-            this.dayToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.dayToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
             this.dayToolStripMenuItem.Text = "Day";
             // 
             // helpToolStripMenuItem
@@ -172,20 +172,20 @@ namespace PhotofileMerger
             this.whatsGoingToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // whatsGoingToolStripMenuItem
             // 
             this.whatsGoingToolStripMenuItem.Name = "whatsGoingToolStripMenuItem";
-            this.whatsGoingToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.whatsGoingToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.whatsGoingToolStripMenuItem.Text = "What\'s going?";
             this.whatsGoingToolStripMenuItem.Click += new System.EventHandler(this.whatsGoingToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 

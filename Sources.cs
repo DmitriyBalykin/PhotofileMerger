@@ -11,6 +11,8 @@ namespace PhotofileMerger
         [return: MarshalAs(UnmanagedType.Bool)]
         private static extern bool ShowScrollBar(IntPtr hWnd, int wBar, bool bShow);
 
+        TableLayoutPanel internalLayout;
+
         private enum ScrollBarDirection
         {
             SB_HORZ = 0,
@@ -21,13 +23,10 @@ namespace PhotofileMerger
 
         private List<SourceControl> sourcesList = new List<SourceControl>();
 
-        TableLayoutPanel internalLayout;
-
         public Sources()
             : base()
         {
-            initializeTableLayout();
-            Controls.Add(internalLayout);
+            initializeLayout();
         }
 
         public void AddSource(SourceControl source) {
@@ -52,14 +51,25 @@ namespace PhotofileMerger
         private void refreshSourcesView() {
             internalLayout.Controls.Clear();
             internalLayout.Controls.AddRange(sourcesList.ToArray());
-            ShowScrollBar(Handle, (int)ScrollBarDirection.SB_HORZ, false);
+            //ShowScrollBar(Handle, (int)ScrollBarDirection.SB_HORZ, false);
         }
-        private void initializeTableLayout() {
+        private void initializeLayout() {
+            AutoSize = true;
+            AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            
+            Dock = DockStyle.Top;
+            AutoScroll = true;
+            MaximumSize = new System.Drawing.Size(0, 400);
+
             internalLayout = new TableLayoutPanel();
             internalLayout.AutoSize = true;
             internalLayout.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            internalLayout.GrowStyle = TableLayoutPanelGrowStyle.AddRows;
             internalLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize));
-            internalLayout.RowCount = 1;
+            internalLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.AutoSize));
+            //internalLayout.Dock = DockStyle.Fill;
+
+            Controls.Add(internalLayout);
         }
     }
 }

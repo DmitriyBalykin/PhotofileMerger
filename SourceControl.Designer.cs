@@ -270,9 +270,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.Controls.Add(this.sourceGroupBox);
             this.Name = "SourceControl";
-            this.Size = new System.Drawing.Size(520, 115);
+            this.Size = new System.Drawing.Size(1290, 630);
             this.sourceGroupBox.ResumeLayout(false);
             this.sourceGroupBox.PerformLayout();
             this.timeShiftPanel.ResumeLayout(false);

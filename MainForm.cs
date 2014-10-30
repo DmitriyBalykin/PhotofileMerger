@@ -25,17 +25,8 @@ namespace PhotofileMerger
 
         private void initializeSourcesPanel()
         {
-            sourcesPanel = new PhotofileMerger.Sources();
-            sourcesPanel.AutoScroll = true;
-            sourcesPanel.AutoSize = true;
-            sourcesPanel.Location = new System.Drawing.Point(12, 140);
-            sourcesPanel.MaximumSize = new System.Drawing.Size(0, 450);
-            sourcesPanel.Name = "sourcesPanel";
-            sourcesPanel.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
-            sourcesPanel.Size = new System.Drawing.Size(23, 3);
-            sourcesPanel.TabIndex = 10;
-
-            Controls.Add(this.sourcesPanel);
+            sourcesPanel = new Sources();
+            tableLayoutPanelMain.Controls.Add(sourcesPanel);
         }
 
         void MainForm_Progressed(ProgressChangedEventArgs e)

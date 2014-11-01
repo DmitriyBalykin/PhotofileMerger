@@ -48,6 +48,8 @@ namespace PhotofileMerger
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanelMain = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.filesCountLabel = new System.Windows.Forms.Label();
+            this.filesFoundLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanelMain.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -205,6 +207,8 @@ namespace PhotofileMerger
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.filesCountLabel);
+            this.panel1.Controls.Add(this.filesFoundLabel);
             this.panel1.Controls.Add(this.goButton);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.addSourceButton);
@@ -216,6 +220,27 @@ namespace PhotofileMerger
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(544, 110);
             this.panel1.TabIndex = 14;
+            // 
+            // filesCountLabel
+            // 
+            this.filesCountLabel.AutoSize = true;
+            this.filesCountLabel.Location = new System.Drawing.Point(276, 93);
+            this.filesCountLabel.Name = "filesCountLabel";
+            this.filesCountLabel.Size = new System.Drawing.Size(13, 13);
+            this.filesCountLabel.TabIndex = 13;
+            this.filesCountLabel.Text = "0";
+            this.filesCountLabel.Visible = false;
+            // 
+            // filesFoundLabel
+            // 
+            this.filesFoundLabel.AutoSize = true;
+            this.filesFoundLabel.BackColor = System.Drawing.Color.Transparent;
+            this.filesFoundLabel.Location = new System.Drawing.Point(215, 93);
+            this.filesFoundLabel.Name = "filesFoundLabel";
+            this.filesFoundLabel.Size = new System.Drawing.Size(61, 13);
+            this.filesFoundLabel.TabIndex = 12;
+            this.filesFoundLabel.Text = "Files found:";
+            this.filesFoundLabel.Visible = false;
             // 
             // MainForm
             // 
@@ -266,6 +291,8 @@ namespace PhotofileMerger
         private ToolStripMenuItem aboutToolStripMenuItem;
         private TableLayoutPanel tableLayoutPanelMain;
         private Panel panel1;
+        private Label filesFoundLabel;
+        private Label filesCountLabel;
     }
 }
 

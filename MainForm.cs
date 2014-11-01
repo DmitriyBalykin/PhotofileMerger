@@ -8,19 +8,73 @@ namespace PhotofileMerger
     {
         private static string DEFAULT_FILE_PREFIX = "Image_";
 
-        public delegate void ProgressMoved(ProgressChangedEventArgs e);
+        private const string GO_TEXT = "Go!";
+        private const string CANCEL_TEXT = "Cancel";
+        private const string FILES_PREPROCESS_TEXT = "Files found:";
+
+        public delegate void ProgressMoved(int progress, object state);
+
         public event ProgressMoved Progressed;
+        public event ProgressMoved FilesCounted;
+
+        public delegate void WorkInProgress();
+        public event WorkInProgress workInProgress;
+
+        public delegate void WorkFinished();
+        public event WorkFinished workFinished;
+
+        private FileProcessor fileProcessor;
+
+        private bool working = false;
 
         public MainForm()
         {
             InitializeComponent();
             initializeSourcesPanel();
 
+            goButton.Text = GO_TEXT;
+
             Progressed += MainForm_Progressed;
+            FilesCounted += MainForm_FilesPreprocessed;
+
+            workInProgress += MainForm_workInProgress;
+            workFinished += MainForm_workFinished;
 
             prefixTextBox.Text = DEFAULT_FILE_PREFIX;
 
             addControl(SourceControl.ORIGIN);
+        }
+
+        void MainForm_workFinished()
+        {
+            working = false;
+            goButton.Text = GO_TEXT;
+            fileProcessor = null;
+        }
+
+        void MainForm_workInProgress()
+        {
+            working = true;
+            progressBar.Value = 0;
+            progressBar.Visible = false;
+            filesCountLabel.Visible = false;
+            filesFoundLabel.Visible = false;
+            filesFoundLabel.Text = FILES_PREPROCESS_TEXT;
+            goButton.Text = CANCEL_TEXT;
+        }
+        void MainForm_FilesPreprocessed(int progress, object state)
+        {
+            if (!filesFoundLabel.Visible)
+            {
+                filesFoundLabel.Visible = true;
+                filesCountLabel.Visible = true;
+                progressBar.Visible = true;
+            }
+            if (state != null)
+            {
+                progressBar.Value = progress;
+                filesCountLabel.Text = state.ToString();
+            }
         }
 
         private void initializeSourcesPanel()
@@ -29,13 +83,26 @@ namespace PhotofileMerger
             tableLayoutPanelMain.Controls.Add(sourcesPanel);
         }
 
-        void MainForm_Progressed(ProgressChangedEventArgs e)
+        void MainForm_Progressed(int progress, object state)
         {
             if(!progressBar.Visible)
             {
                 progressBar.Visible = true;
             }
-            progressBar.Value = e.Progress;
+            if (!filesFoundLabel.Visible)
+            {
+                filesFoundLabel.Visible = true;
+            }
+            if (state != null)
+            {
+                filesCountLabel.Visible = false;
+                filesFoundLabel.Text = state.ToString();
+            }
+            else
+            {
+                filesFoundLabel.Text = "Sorting ...";
+                progressBar.Value = progress;
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -74,20 +141,31 @@ namespace PhotofileMerger
 
         private void goButton_Click(object sender, EventArgs e)
         {
-            bool groupByYear = yearToolStripMenuItem.Checked;
-            bool groupByMonth = monthToolStripMenuItem.Checked;
-            bool groupByDay = dayToolStripMenuItem.Checked;
+            if (!working)
+            {
+                bool groupByYear = yearToolStripMenuItem.Checked;
+                bool groupByMonth = monthToolStripMenuItem.Checked;
+                bool groupByDay = dayToolStripMenuItem.Checked;
 
-            FileProcessor.MergeFiles(
-                sourcesPanel.GetSourcesTimeMap(),
-                destFolderPath.Text,
-                prefixTextBox.Text,
-                Progressed,
-                new Grouping(
-                    yearToolStripMenuItem.Checked,
-                    monthToolStripMenuItem.Checked,
-                    dayToolStripMenuItem.Checked
-                    ));
+                fileProcessor = new FileProcessor(
+                    workInProgress,
+                    workFinished,
+                    destFolderPath.Text,
+                    prefixTextBox.Text,
+                    Progressed,
+                    FilesCounted,
+                    new Grouping(
+                        yearToolStripMenuItem.Checked,
+                        monthToolStripMenuItem.Checked,
+                        dayToolStripMenuItem.Checked
+                        ));
+                fileProcessor.MergeFiles(sourcesPanel.GetSourcesTimeMap());
+            }
+            else
+            {
+                fileProcessor.CancelWork();
+            }
+            
         }
 
         private void destFolderPath_TextChanged(object sender, EventArgs e)

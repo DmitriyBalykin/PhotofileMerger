@@ -45,3 +45,5 @@ Temporary Items
 *.exe
 obj/*
 bin/*
+*.psess
+*.vsp

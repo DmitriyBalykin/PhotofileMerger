@@ -164,6 +164,9 @@ namespace PhotofileMerger
             else
             {
                 fileProcessor.CancelWork();
+                progressBar.Value = 0;
+                filesCountLabel.Visible = false;
+                filesFoundLabel.Visible = false;
             }
             
         }

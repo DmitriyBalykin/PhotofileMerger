@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExifLib;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -47,26 +48,20 @@ namespace PhotofileMerger
 
         private SortedList<FileRecord, string> filesList;
 
-        public static string GetFileExifDate(string fileName) {
+        public static DateTime FastGetFileExifDate(string fileName)
+        {
             try
             {
-                Bitmap image = new Bitmap(fileName);
-                PropertyItem[] propItems = image.PropertyItems;
-                for (int i = 0; i < propItems.Length; i++ )
+                ExifReader reader = new ExifReader(@fileName);
+                DateTime datePictureTaken;
+                if(reader.GetTagValue<DateTime>(ExifTags.DateTime, out datePictureTaken))
                 {
-                    if (propItems[i].Id == ORIGIN_DT)
-                    {
-                        string strValue = System.Text.Encoding.UTF8.GetString(propItems[i].Value).Replace("\0", "");
-                        return strValue;
-                    }
+                    return datePictureTaken;
                 }
-                image = null;
             }
             catch
-            {
-                return "";
-            }
-            return "No origin data available";
+            {}
+            return DateTime.MinValue;
         }
 
         public static DateTime GetExifDateTime(string datestr)
@@ -202,7 +197,7 @@ namespace PhotofileMerger
 
                 foreach (string file in files)
                 {
-                    DateTime fileDate = GetExifDateTime(GetFileExifDate(file)).Add(timeShift);
+                    DateTime fileDate = FastGetFileExifDate(file).Add(timeShift);
                     filesList.Add(new FileRecord(file, fileDate), file);
                     counter++;
                     worker.ReportProgress((int)(100*counter/totalFiles), totalFiles);

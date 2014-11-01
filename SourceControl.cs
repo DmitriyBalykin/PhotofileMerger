@@ -12,7 +12,7 @@ namespace PhotofileMerger
 
         public int Id;
 
-        private static string origin_time;
+        private static DateTime origin_time;
 
         public delegate void ChangedEventHandler(object sender, OriginDateChangedEventArgs e);
 
@@ -33,8 +33,9 @@ namespace PhotofileMerger
             initializeControl();
             sourceGroupBox.Text = "Source #" + sources;
             photoDateTextBox.TextChanged += sourcePhotoDateChanged;
-            if(!string.IsNullOrEmpty(origin_time)){
-                tryCountDiff(origin_time, photoDateTextBox.Text);
+            if (origin_time != null)
+            {
+                tryCountDiff(origin_time, FileProcessor.GetExifDateTime(photoDateTextBox.Text));
             }
         }
         
@@ -56,41 +57,30 @@ namespace PhotofileMerger
         void originPhotoDateChanged(object sender, EventArgs e)
         {
             OriginDateChangedEventArgs eventArgs = new OriginDateChangedEventArgs(photoDateTextBox.Text);
-            origin_time = photoDateTextBox.Text;
+            origin_time = FileProcessor.GetExifDateTime(photoDateTextBox.Text);
             Changed(this, eventArgs);
         }
         private void sourcePhotoDateChanged(object sender, EventArgs e)
         {
-            tryCountDiff(origin_time, photoDateTextBox.Text);
+            tryCountDiff(origin_time, FileProcessor.GetExifDateTime(photoDateTextBox.Text));
         }
         void SourceControl_Changed(object sender, OriginDateChangedEventArgs e)
         {
-            tryCountDiff(origin_time, photoDateTextBox.Text);
+            tryCountDiff(origin_time, FileProcessor.GetExifDateTime(photoDateTextBox.Text));
         }
-        private void tryCountDiff(string originTime, string sourceTime) {
+        private void tryCountDiff(DateTime originTime, DateTime sourceTime)
+        {
             if (isOriginal)
             {
                return;
             }
-            if (string.IsNullOrEmpty(originTime) || string.IsNullOrEmpty(sourceTime))
-            {
-                clearTimeShiftBoxes();
-                return;
-            }
-            DateTime originDateTime = FileProcessor.GetExifDateTime(origin_time);
-            if (originDateTime.Equals(DateTime.MinValue))
-            {
-                clearTimeShiftBoxes();
-                return;
-            }
-            DateTime sourceDateTime = FileProcessor.GetExifDateTime(sourceTime);
-            if (sourceDateTime.Equals(DateTime.MinValue))
+            if (originTime == null || sourceTime == null)
             {
                 clearTimeShiftBoxes();
                 return;
             }
 
-            SourceTimeDiff = sourceDateTime.Subtract(originDateTime);
+            SourceTimeDiff = sourceTime.Subtract(originTime);
             updateTimeShiftTextBoxes();
         }
 
@@ -133,13 +123,22 @@ namespace PhotofileMerger
         {
             if(anchorFileDialog.ShowDialog() == DialogResult.OK){
                 anchorFileTextBox.Text = anchorFileDialog.FileName;
-                photoDateTextBox.Text = FileProcessor.GetFileExifDate(anchorFileDialog.FileName);
             }
         }
 
         private void anchorFileTextBox_TextChanged(object sender, EventArgs e)
         {
-            photoDateTextBox.Text = FileProcessor.GetFileExifDate(anchorFileTextBox.Text);
+            DateTime time = FileProcessor.FastGetFileExifDate(anchorFileTextBox.Text);
+            string result;
+            if (time.Equals(DateTime.MinValue))
+            {
+                result = "Date of photo is anavailable";
+            }
+            else
+            {
+                result = time.ToString();
+            }
+            photoDateTextBox.Text = result;
         }
 
         private void removeSourceButton_Click(object sender, EventArgs e)

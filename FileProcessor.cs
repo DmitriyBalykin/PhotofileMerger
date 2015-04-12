@@ -54,7 +54,7 @@ namespace PhotofileMerger
             {
                 ExifReader reader = new ExifReader(@fileName);
                 DateTime datePictureTaken;
-                if(reader.GetTagValue<DateTime>(ExifTags.DateTime, out datePictureTaken))
+                if(reader.GetTagValue<DateTime>(ExifTags.DateTimeOriginal, out datePictureTaken))
                 {
                     return datePictureTaken;
                 }
